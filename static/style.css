@@ -1,0 +1,65 @@
+div             { border-radius: 1em; }
+body            { font-family: sans-serif; background: #6C6256; }
+a, h1, h2       { color: #F9EAD5; }
+h1, h2          { font-family: 'Georgia', serif; margin: 0; }
+h1              { border-bottom: 2px solid #eee; font-size: 3em; }
+h2              { font-size: 1.2em; }
+
+.page           { margin: 2em auto;
+                  width: 55em;
+                  border: 5px solid #ccc;
+                  padding: 0.8em;
+                  background: #BDAD98;
+                  overflow: auto; }
+
+.header         { padding: 0.8em;
+                  background: #333}
+
+.entries        { list-style: none; margin: 0; padding: 0; }
+.entries li     { margin: 0.8em 1.2em; }
+.entries li h2  { margin-left: -1em; }
+.add-entry      { font-size: 0.9em; border-bottom: 1px solid #ccc; }
+.add-entry dl   { font-weight: bold; }
+
+.metanav        { list-style-type: none;
+                  margin: 0;
+                  padding: 0;
+                  overflow: hidden;
+                  background-color: #89827A;
+
+                  margin-top: 0.8em;
+
+                  display: block;
+                  border-radius: 1em; }
+
+.metanav li     { float: left; }
+
+.metanav li a   { display: block;
+                  color: white;
+                  text-align: center;
+                  padding: 14px 16px;
+                  text-decoration: none; }
+
+.metanav li a:hover
+                { background-color: #6C6256; }
+
+.metanavside    { float: right;
+                  width: 15em;
+                  height: auto;
+
+                  margin-top: 0.8em;
+                  padding: 0.8em;
+
+                  display: block;
+                  text-align: right;
+                  font-size: 0.8em;
+                  background: #89827A; }
+
+li.search_entries { float: right;
+                    padding: 0.7em 0; }
+
+.flash          { background: #cee5F5;
+                  padding: 0.5em;
+                  border: 1px solid #aacbe2; }
+.error          { background: #f0d6d6; padding: 0.5em; }
+
