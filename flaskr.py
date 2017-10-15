@@ -4,7 +4,7 @@ import sqlite3
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
 
-# create our little application :)
+# creates application
 app = Flask(__name__)
 app.config.from_object(__name__)
 
@@ -27,8 +27,7 @@ def connect_db():
 
 def get_db():
     """Opens a new database connection if there is none yet for the
-    current application context.
-    """
+    current application context."""
     if not hasattr(g, 'sqlite_db'):
         g.sqlite_db = connect_db()
     return g.sqlite_db
@@ -57,6 +56,7 @@ def initdb_command():
 
 @app.route('/')
 def show_entries():
+    """Gets blog entries from database to display on html page."""
     db = get_db()
     cur = db.execute('select title, text from entries order by id desc')
     entries = cur.fetchall()
@@ -65,6 +65,7 @@ def show_entries():
 
 @app.route('/add', methods=['POST'])
 def add_entry():
+    """Takes input from form and adds to database of blog entries."""
     if not session.get('logged_in'):
         abort(401)
     db = get_db()
@@ -77,6 +78,7 @@ def add_entry():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    """Uses input from form to validate against login requirements."""
     error = None
     if request.method == 'POST':
         if request.form['username'] != app.config['USERNAME']:
@@ -99,6 +101,7 @@ def logout():
 
 @app.route('/about')
 def about():
+    """Sends text to be displayed on the html page."""
     if session.get('logged_in'):
         msg = 'Hi your name is Simi'
     else:
@@ -108,7 +111,7 @@ def about():
 
 @app.route('/guest_book')
 def guest_book():
-    # Shows guest book entries
+    """Gets guest book entries from database and displays on the html page."""
     db = get_db()
     cur = db.execute('select title, text from guest_entries order by id desc')
     entries = cur.fetchall()
@@ -117,6 +120,7 @@ def guest_book():
 
 @app.route('/add_guest_entry', methods=['POST'])  # <----
 def add_guest_entry():
+    """Adds form input for guestbook entries to database."""
     if not session.get('logged_in'):
         pass  # unauthorised?
     db = get_db()
@@ -129,6 +133,7 @@ def add_guest_entry():
 
 @app.route('/search_entries', methods=['GET', 'POST'])
 def search_entries():
+    """Performs search on query from form input and outputs associated entries."""
     query = request.form['search_entries']
     db = get_db()
     cur = db.execute('select title, text from entries where title or text like "%'+query+'%" order by id desc')
